@@ -1,0 +1,20 @@
+{
+  "name": "aoc2024",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "compile": "tsc"
+  },
+  "author": "",
+  "devDependencies": {
+    "@tsconfig/node-lts": "^22.0.1",
+    "prettier": "^3.4.1",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@types/node": "^22.10.1"
+  },
+  "volta": {
+    "node": "22.11.0"
+  }
+}

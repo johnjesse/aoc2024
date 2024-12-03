@@ -59,7 +59,7 @@ function isValidReport(report: Report): boolean {
 
   let previousItem = secondItem;
 
-  const isInvalid = report.some((item, index) => {
+  const isInvalid = report.some((item) => {
     const isInValid = !isValidItemPair(previousItem, item, reportType);
     previousItem = item;
     return isInValid;

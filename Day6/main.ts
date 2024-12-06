@@ -161,18 +161,36 @@ function doesGuardWalkInALoop(grid: Grid, startingPoint: Position): boolean {
 function findLoops(grid: Grid, startingPoint: Position) {
   let loopCount = 0;
 
-  for (let rowIndex = 0; rowIndex < grid.length; rowIndex++) {
-    const row = grid[rowIndex];
+  const posibleObstacleLocations: Position[] = [];
+  const visited = new Set<string>();
 
-    for (let colIndex = 0; colIndex < row.length; colIndex++) {
-      const cell = row[colIndex];
+  walkGrid(
+    grid,
+    startingPoint,
+    (position, orientation) => {
+      const positionHash = `${position[0]}-${position[1]}`;
+      if (
+        !visited.has(positionHash) &&
+        positionHash !== `${startingPoint[0]}-${startingPoint[1]}`
+      ) {
+        visited.add(`${position[0]}-${position[1]}`);
+        posibleObstacleLocations.push(position);
+      }
+    },
+    () => true
+  );
 
-      if (!isOrientation(cell) && cell !== "#") {
-        const newGrid = grid.with(rowIndex, row.with(colIndex, "#"));
+  for (const position of posibleObstacleLocations) {
+    const rowIndex = position[0];
+    const colIndex = position[1];
+    const cell = grid[rowIndex][colIndex];
 
-        if (doesGuardWalkInALoop(newGrid, startingPoint)) {
-          loopCount++;
-        }
+    if (!isOrientation(cell) && cell !== "#") {
+      const row = grid[rowIndex];
+      const newGrid = grid.with(rowIndex, row.with(colIndex, "#"));
+
+      if (doesGuardWalkInALoop(newGrid, startingPoint)) {
+        loopCount++;
       }
     }
   }

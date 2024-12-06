@@ -37,8 +37,10 @@ function isOrientation(value: string): value is Orientation {
 function getStartingPosition(grid: Grid): Position {
   for (let rowIndex = 0; rowIndex < grid.length; rowIndex++) {
     const row = grid[rowIndex];
+
     for (let colIndex = 0; colIndex < row.length; colIndex++) {
       const cell = row[colIndex];
+
       if (isOrientation(cell)) {
         return [rowIndex, colIndex];
       }
@@ -92,6 +94,7 @@ function walkGrid(
   ) => boolean
 ) {
   let currentPosition = startingPoint;
+
   const initialOrientation = grid[startingPoint[0]][startingPoint[1]];
   assertOrientation(initialOrientation);
   let currentOrientation = initialOrientation;
@@ -101,6 +104,7 @@ function walkGrid(
     continueWalking(currentPosition, currentOrientation)
   ) {
     positionCallback(currentPosition, currentOrientation);
+
     const potentialNextCell = getNextCellPosition(
       currentPosition,
       currentOrientation
@@ -141,6 +145,7 @@ function doesGuardWalkInALoop(grid: Grid, startingPoint: Position): boolean {
     startingPoint,
     (position, orientation) => {
       const hash = `${position[0]}-${position[1]}-${orientation}`;
+
       if (visited.has(hash)) {
         hasLooped = true;
       } else {

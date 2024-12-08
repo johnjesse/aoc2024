@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { join, parse } from "path";
+import { join } from "path";
 
 let memoizedInput: Data | undefined = undefined;
 function getInput() {

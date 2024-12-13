@@ -52,30 +52,6 @@ interface WalkThrough {
   bPresses: number;
 }
 
-function getClawPosition(aPresses: number, bPresses: number, machine: Machine) {
-  const xPos = machine.a.x * aPresses + machine.b.x * bPresses;
-  const yPos = machine.a.y * aPresses + machine.b.y * bPresses;
-  return {
-    x: xPos,
-    y: yPos,
-  };
-}
-
-function canStillReachPrize(
-  aPresses: number,
-  bPresses: number,
-  machine: Machine
-) {
-  const { x, y } = getClawPosition(aPresses, bPresses, machine);
-  return x <= machine.prize.x || y <= machine.prize.y;
-}
-
-function isOnPrize(aPresses: number, bPresses: number, machine: Machine) {
-  const { x, y } = getClawPosition(aPresses, bPresses, machine);
-
-  return x === machine.prize.x && y === machine.prize.y;
-}
-
 interface MaxPresses {
   a: number;
   b: number;

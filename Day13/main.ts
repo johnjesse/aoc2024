@@ -140,7 +140,7 @@ function correctPrizeCoordintates(machines: Machine[]): Machine[] {
 }
 
 function part2() {
-  console.log("Part 1");
+  console.log("Part 2");
   const machines = correctPrizeCoordintates(parseInput());
   const solutionsPreMachine = machines
     .map((m) => calculateWaysToWinPrize(m))

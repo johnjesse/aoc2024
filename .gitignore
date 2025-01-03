@@ -1,3 +1,5 @@
 /**/*.js
 /node_modules/
-/**/input
+/**/*input
+
+/Day15/movements

@@ -60,7 +60,9 @@ function getInput() {
 }
 
 function parseInput(): Data {
-  const movementsData = readFileSync(join(__dirname, "movements")).toString();
+  const movementsData = readFileSync(
+    join(__dirname, "movements-input")
+  ).toString();
   const movements = movementsData
     .split("\n")
     .flatMap((row) => row.split(""))
@@ -79,7 +81,9 @@ function parseInput(): Data {
       }
     });
 
-  const storeRoomData = readFileSync(join(__dirname, "storeroom")).toString();
+  const storeRoomData = readFileSync(
+    join(__dirname, "storeroom-input")
+  ).toString();
   const rows = storeRoomData.split("\n").map((row) => row.split(""));
 
   let robot: Robot | undefined;
